@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios');
-const { response } = require('express');
 
 const app = express()
 
@@ -22,7 +21,7 @@ app.get('/transacao/:id',async (req,res) => {
         if(!txid){
             res.status(401).json({ error: 'TxId não informado.'})
         } else {
-            response = await axios.get(`https://explorer.viawallet.com/res/btc/transactions/${txid}`)
+            const response = await axios.get(`https://explorer.viawallet.com/res/btc/transactions/${txid}`)
             console.log('Transacao: ' + response.status, response.statusText)
             res.json(response.data)
         }
@@ -41,7 +40,7 @@ app.get('/carteira/:id',async (req,res) => {
         if(!txid){
             res.status(401).json({ error: 'TxId não informado.'})
         } else {
-            response = await axios.get(`https://blockchain.info/rawaddr/${txid}`)
+            const response = await axios.get(`https://blockchain.info/rawaddr/${txid}`)
             console.log('Carteira: ' + response.status, response.statusText)
             res.json(response.data)
         }
@@ -60,7 +59,7 @@ app.get('/bloco/:id',async (req,res) => {
         if(!txid){
             res.status(401).json({ error: 'TxId não informado.'})
         } else {
-            response = await axios.get(`https://blockchain.info/rawblock/${txid}`)
+            const response = await axios.get(`https://blockchain.info/rawblock/${txid}`)
             console.log('Bloco: ' + response.status, response.statusText)
             res.json(response.data)
         }
