@@ -80,6 +80,8 @@ app.get('/moeda/:pares',async (req,res) => {
         } else {
             const response = await axios.get(`https://economia.awesomeapi.com.br/json/last/${pares}`)
             console.log('Cotacao: ' + response.status, response.statusText)
+            const data = JSON.parse(data)
+            console.log(data)
             res.json(response.data)
         }
     } catch (error) {
